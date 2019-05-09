@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10_ComponentLife</title>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  /*
+  需求: 自定义组件
+    1. 让指定的文本做显示/隐藏的动画
+    2. 切换时间为2S
+    3. 点击按钮从界面中移除组件界面
+   */
+
+  //定义组件
+  class Conmponts extends React.Component{
+    //设置初始值
+    state={
+      opacity: 1
+    }
+    //挂在组件之前设置
+    componentDidMount(){
+
+      this.timerID=setInterval(()=>{
+        //获取元素
+        const {opacity}=this.state
+        const neWopacity=opacity-0.01
+        this.setState({
+          opacity:neWopacity>0?neWopacity:1
+        })
+
+      },1000/60)
+    }
+
+    hatClick=()=>{
+      // 卸载组件
+      ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+    }
+    //清除定时器
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+
+    render(){
+      //获取初始值
+      const {opacity}=this.state
+      return <div>
+        <h2 style={{opacity}}>react,太难了，学不会怎么办？</h2>
+        <button onClick={this.hatClick}>不活了</button>
+      </div>
+    }
+
+  }
+
+ ReactDOM.render(<Conmponts/>,document.getElementById('example'))
+
+</script>
+</body>
+</html>

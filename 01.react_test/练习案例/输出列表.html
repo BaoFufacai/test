@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+
+
+<div id="example1"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+
+  //定义数组
+  const data=['欣欣','凉凉','浅浅','折颜','夜华','玄女','素锦','白真']
+
+  //定义类组件
+  class Arryas extends React.Component{
+    render(){
+      return <ul>
+        {data.map((item,index)=><li key={index}>{item}</li>)}
+      </ul>
+    }
+
+  }
+
+  ReactDOM.render(<Arryas/>,document.getElementById('example1'))
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>02_JSX_DEMO</title>
+</head>
+<body>
+  <h2>前端JS框架列表</h2>
+  <div id="example1"></div>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  const data=['欣欣','靓靓','浅浅','欢欢']
+
+    ReactDOM.render(
+      <ul>
+        {data.map((item,index)=><li key={index}>{item}</li>)}
+      </ul>,
+      document.getElementById('example1')
+    );
+</script>
+
+
+</body>
+
+</html>

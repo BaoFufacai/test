@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+
+  //定义组件
+  class NPMinpuT extends React.Component{
+    constructor(){
+      super()
+      this.HelloW=React.createRef()
+
+    }
+    huatClick=()=>{
+      //获取信息
+      const {value}=this.HelloW.current;
+      //打印
+      alert(value)
+
+    }
+    huatBlur=(event)=>{
+      //获取信息
+      const {value}=event.target
+      //打印信息
+      alert(value)
+      //清除信息
+      event.target.value=''
+    }
+    render(){
+      return <div>
+        <input type="text" ref={this.HelloW}/>
+        <button onClick={this.huatClick}>点击提交</button>
+        <input type="text" placeholder="失去焦点" onBlur={this.huatBlur}/>
+      </div>
+    }
+
+  }
+  ReactDOM.render(<NPMinpuT/>,document.getElementById('example'))
+
+</script>
+</body>
+</html>

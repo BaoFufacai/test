@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>05_components_composing</title>
+</head>
+<body>
+
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <script type="text/babel">
+   //定义App组件
+    class App extends React.Component{
+      //初始化数据
+      state={
+        todos:['欣欣','凉凉','浅浅']
+      }
+      upDataTodos=(todo)=>{
+        //获取初始化数据
+        const {todos}=this.state
+        //更新数据
+        this.setState({
+          todos:[todo,...todos]
+        })
+      }
+
+      render(){
+        //获取数据
+        const {todos}=this.state
+        return <div>
+          <h1>列表显示</h1>
+          <APPToDos upDataTodos={this.upDataTodos} length={todos.length}/>
+          <ToDoList todos={todos}/>
+        </div>
+      }
+    }
+
+    //定义AppTodos
+    class APPToDos extends React.Component{
+          constructor(){
+            super()
+            this.MeRef=React.createRef()
+          }
+          //获取todos
+            static propTypes={
+              upDataTodos:PropTypes.func.isRequired,
+              length: PropTypes.number.isRequired
+            }
+
+      hatClick=()=>{
+            //获取信息
+            const {value}=this.MeRef.current;
+            //获取数据
+            if(value){
+              //添加数据
+              this.props.upDataTodos(value)
+              //清空数据
+              this.MeRef.current.value=''
+            }
+
+
+      }
+
+      render(){
+        return <div>
+          <input type="text" ref={this.MeRef}/>
+          <button onClick={this.hatClick}>ADD #{this.props.length}</button>
+        </div>
+
+      }
+    }
+
+    //定义ToDoList
+    class ToDoList extends React.Component{
+        //接收数据
+      static propTypes={
+        todos:PropTypes.array.isRequired
+      }
+      render(){
+        //获取数据
+        const {todos}=this.props;
+        return <ul>
+          {
+            todos.map((item,index)=>{
+              return<li key={index}>{item}</li>
+            })
+          }
+        </ul>
+
+      }
+    }
+
+
+    ReactDOM.render(<App/>,document.getElementById('example'))
+
+  </script>
+</body>
+</html>

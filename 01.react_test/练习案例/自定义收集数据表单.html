@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+<!--<div id="example"></div>-->
+<div id="example1"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  // //定义组件
+  // class Lintform extends React.Component{
+  //   //初始化数据
+  //   state={
+  //     usuename:'',
+  //     password:''
+  //   }
+  //   handleInputChange=(submitese)=>{
+  //     return (e)=>{
+  //       this.setState({
+  //         [submitese]:e.target.value
+  //       })
+  //     }
+  //
+  //   }
+  //
+  //   huatClick=(event)=>{
+  //     //打印数据
+  //     const {usuename,password}=this.state
+  //     event.preventDefault();
+  //      alert(`用户名：${usuename},密码：${password}`)
+  //
+  //   }
+  //   render(){
+  //     return<form onClick={this.huatClick}>
+  //       用户名<input type="text" onChange={this.handleInputChange('usuename')}/>
+  //       密码<input type="password" onChange={this.handleInputChange('password')}/>
+  //       <input type="submit"  />
+  //     </form>
+  //
+  //   }
+  // }
+  // ReactDOM.render(<Lintform />,document.getElementById('example'))
+
+
+
+  class Addinptu extends React.Component{
+    //初始数据
+    state={
+      usename:'',
+      password:''
+    }
+
+
+    handleChange=(namelis)=>{
+      //修改状态
+     return (e)=>{
+       this.setState({
+         [namelis]:e.target.value.toUpperCase()
+       })
+     }
+
+    }
+    handleSubmit=(event)=>{
+      //获取信息
+      const {usename,password}=this.state;
+      //取消浏览器默认行为
+      event.preventDefault()
+      //提示数据
+      alert(`用户名${usename},密码${password}`)
+
+    }
+
+    render(){
+      return<form onSubmit={this.handleSubmit}>
+        用户名<input type="text" onChange={this.handleChange('usename')}/>
+        密码<input type="password" onChange={this.handleChange('password')}/>
+        <input type="submit" value="Submit" />
+
+      </form>
+    }
+  }
+  ReactDOM.render(<Addinptu />,document.getElementById('example1'))
+
+</script>
+</body>
+</html>

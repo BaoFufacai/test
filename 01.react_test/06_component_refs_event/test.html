@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>07_component_refs</title>
+</head>
+<body>
+<br>
+  <div id="example"></div>
+
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    /*
+    需求: 自定义组件, 功能说明如下:
+      1. 界面如果页面所示
+      2. 点击按钮, 提示第一个输入框中的值
+      3. 当第2个输入框失去焦点时, 提示这个输入框中的值
+   */
+    class ShoppingLis extends React.Component{
+      constructor() {
+        super();
+        this.myRef = React.createRef();
+      }
+
+      handleClick=()=>{
+        //获取信息
+        const {value}=this.myRef.current;
+        //提示文本
+        alert(value)
+      }
+
+      handleBlur=(event)=>{
+        //获取数据
+        const {value}=event.target
+        //提示文本
+        alert(value)
+        //清空文本
+        event.target.value='';
+
+
+      }
+      render(){
+        return <div>
+              <input type="text" ref={this.myRef}/>
+              <button onClick={this.handleClick}>点击提示数据</button>
+              <input type="text" placeholder="失去焦点提示数据" onBlur={this.handleBlur}/>
+            </div>
+      }
+    }
+    ReactDOM.render(<ShoppingLis/>,document.getElementById('example'))
+  </script>
+</body>
+</html>

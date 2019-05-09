@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  //定义表单
+  class Addlist extends React.Component{
+    //初始化显示
+    state={
+      usename:'',
+      password:''
+    }
+    huatSubmit=(event)=>{
+      //获取信息
+      const {usename,password}=this.state
+      //阻止浏览器默认行为
+        event.preventDefault()
+      //打印数据
+      alert(`用户名${usename},密码${password}`)
+    }
+    //高阶函数
+    hatuChange=(usetvalue)=>{
+      return (e)=>{
+        this.setState({
+          [usetvalue]:e.target.value
+        })
+
+      }
+    }
+
+
+    render(){
+      return<form onSubmit={this.huatSubmit}>
+        用户名：<input type="text" onChange={this.hatuChange('usename')}/>
+        密码：<input type="password" onChange={this.hatuChange('password')} />
+        <input type="submit" />
+      </form>
+
+    }
+
+  }
+ReactDOM.render(<Addlist/>,document.getElementById('example'))
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>07_component_state</title>
+</head>
+<body>
+
+<div id="example"></div>
+<div id="example1"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  /*
+  需求: 自定义组件, 功能说明如下
+    1. 显示h2标题, 初始文本为: 你喜欢我
+    2. 点击标题更新为: 我喜欢你
+  */
+
+//第一种
+//   class IsLisk extends React.Component{
+//     //设置初始化数据
+//    constructor(){
+//      super()
+//      //初始化数据
+//      this.state={
+//        isLiSks:false
+//      }
+//      //修改this指向
+//      this.hatisLiSks=this.hatisLiSks.bind(this)
+//
+//    }
+//     hatisLiSks(){
+//      const {isLiSks}=this.state;
+//      //更新
+//      this.setState({
+//        isLiSks:!isLiSks
+//      })
+//
+//     }
+//
+//    render(){
+//      const {isLiSks}=this.state
+//      return<h1 onClick={this.hatisLiSks}>{isLiSks?'我喜欢你':'你喜欢我'}</h1>
+//    }
+//   }
+//
+//   ReactDOM.render(<IsLisk/>,document.getElementById('example'))
+
+
+  //第二种
+  class IsLike extends React.Component{
+    //初始化
+    state={
+      isLikeMe:false
+    }
+    handleClick=()=>{
+      //获取信息
+      const {isLikeMe}=this.state;
+      this.setState({
+        isLikeMe:!isLikeMe
+      })
+    }
+    render(){
+      //获取信息
+      const {isLikeMe}=this.state;
+      return<h1 onClick={this.handleClick}>{isLikeMe?'很好':'非常好'}</h1>
+    }
+  }
+
+  ReactDOM.render(<IsLike/>,document.getElementById('example1'))
+</script>
+</body>
+</html>
+

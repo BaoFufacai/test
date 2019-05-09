@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+
+<div id="example1"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/javascript" src="../js/prop-types.js"></script>
+<script type="text/babel">
+
+  const parname={
+    name:'欣欣',
+    age:18,
+    sex:'女'
+  }
+  //定义组价
+  class Parname extends React.Component{
+    static propTypes={
+      name:PropTypes.string.isRequired,
+      age:PropTypes.number,
+      sex:PropTypes.string
+    }
+    //设置默认值
+    static defaultprops={
+      ge:18,
+      sex:'男'
+    }
+    render(){
+      const {name,age,sex}=this.props;
+      return<ul>
+        <li>姓名：{name}</li>
+        <li>年龄：{age}</li>
+        <li>性别：{sex}</li>
+      </ul>
+    }
+  }
+  ReactDOM.render(<Parname {...parname}/>,document.getElementById('example1'))
+
+</script>
+</body>
+</html>

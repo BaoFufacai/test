@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+
+<div id="example1"></div>
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  class DomCoEnT extends React.Component{
+    //初始化
+    state={
+      isHpIt:false
+    }
+    isDomCoEnT=()=>{
+      //获取信息
+      const {isHpIt}=this.state
+      this.setState({
+        isHpIt:!isHpIt
+      })
+    }
+    render(){
+
+      //获取信息
+      const {isHpIt}=this.state;
+      return<h1 onClick={this.isDomCoEnT}>{isHpIt?'什么':'说什么'}</h1>
+    }
+  }
+  ReactDOM.render(<DomCoEnT />,document.getElementById('example1'))
+
+</script>
+</body>
+</html>
