@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+
+  </style>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+<script type="text/babel">
+  //组件生命周期案例
+  class Lifecycle extends React.Component{
+    //初始化数据
+    state={
+      opacity: 1
+    }
+    componentDidMount() {
+      this.timerID=setInterval(()=>{
+        //获取信息
+        const {opacity}=this.state
+        //设置变一下量接收
+        const newopacity=opacity-0.01
+        this.setState({
+          opacity:newopacity>0?newopacity:1
+        })
+      },1000/60)
+
+    }
+
+
+    huatClinck=()=>{
+      ReactDOM.unmountComponentAtNode(document.getElementById('example'));
+
+    }
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+    render(){
+      //获取信息
+      const {opacity}=this.state
+      return<div>
+        <h1 style={{opacity}}>太难了怎么办？</h1>
+        <button onClick={this.huatClinck}>努力学</button>
+      </div>
+    }
+  }
+  ReactDOM.render(<Lifecycle/>,document.getElementById('example'))
+
+</script>
+</body>
+</html>
