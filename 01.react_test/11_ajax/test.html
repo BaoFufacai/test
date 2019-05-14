@@ -10,6 +10,7 @@
 <script type="text/javascript" src="../js/react.development.js"></script>
 <script type="text/javascript" src="../js/react-dom.development.js"></script>
 <script type="text/javascript" src="../js/babel.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
 <script type="text/babel">
   /*
   需求:
@@ -18,6 +19,42 @@
     3. 显示库名, 点击链接查看库
     4. 测试接口: https://api.github.com/search/repositories?q=r&sort=stars
   */
+  //定义组件发送请求
+  class Httpajax extends React.Component{
+    //定义初始数据
+    state={
+      name:'',
+      url:''
+    }
+
+    //发送请求
+    componentDidMount(){
+      axios.get('https://api.github.com/search/repositories?q=r&sort=stars')
+        .then((response)=>{
+          console.log()
+          const {name, html_url }=this.response.data.items[0]
+          this.setState({
+            name,
+            url:html_url
+          })
+        })
+        .then()
+        .catch((err)=>{
+          console.log('错误的')
+        })
+    }
+    render(){
+      //获取初始化
+      const {name,url}=this.state
+      if(name){
+        return<h1>Most Popular Repo is <a href={url}>{name}</a></h1>;
+      }else {
+        return <h1>loading....</h1>;
+      }
+
+    }
+  }
+  ReactDOM.render(<Httpajax/>,document.getElementById('example'))
 
 </script>
 </body>
